@@ -1,5 +1,6 @@
 var {
-  Component
+  Component,
+  RectPath
 } = scene;
 
 const NATURE = {
@@ -26,7 +27,7 @@ function hasAnyProperty(o, ...properties) {
   }
 }
 
-export default class WheelSorter extends Component {
+export default class WheelSorter extends RectPath(Component) {
 
   get nature() {
     return NATURE
