@@ -72,20 +72,27 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           strokeStyle: 'black',
           lineWidth: 1
         }, {
-          type: 'wheel-sorter',
-          top: 50,
-          left: 100,
-          width: 500,
-          height: 200,
-          strokeStyle: '#999',
-          fillStyle: 'transparent',
-          lineWidth: 1
-        }, {
+        //   type: 'wheel-sorter',
+        //   top: 50,
+        //   left: 100,
+        //   width: 500,
+        //   height: 200,
+        //   strokeStyle: '#999',
+        //   fillStyle: 'transparent',
+        //   lineWidth: 1
+        // }, {
           type: 'conveyor',
           top: 300,
           left: 100,
-          width: 500,
-          height: 200,
+          path: [
+            {x:50, y:100},
+            {x:100, y:300},
+            {x:250, y:250}
+          ],
+          rotation: 0,
+          weight: 50,
+          // width: 500,
+          // height: 200,
           strokeStyle: 'black',
           lineWidth: 2,
           lineStyle: 'black'
