@@ -25,7 +25,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <link rel="import" href="./things-scene-wheel-sorter.html">
 
     <style is="custom-style">
-
     things-scene-viewer {
       display: block;
       width: 1200px;
@@ -57,7 +56,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <script>
     window.addEventListener('WebComponentsReady', function(e) {
       var app = document.querySelector('#app')
-
       app.model = {
         width: 1200,
         height: 800,
@@ -70,8 +68,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           rx: 20,
           ry: 24,
           strokeStyle: 'black',
+          fillStyle: 'black',
           lineWidth: 1
-        }, {
+        },
+        // {
         //   type: 'wheel-sorter',
         //   top: 50,
         //   left: 100,
@@ -80,23 +80,34 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         //   strokeStyle: '#999',
         //   fillStyle: 'transparent',
         //   lineWidth: 1
-        // }, {
+        // },
+        {
           type: 'conveyor',
-          top: 300,
+          top: 50,
           left: 100,
-          path: [
-            {x:50, y:100},
-            {x:100, y:300},
-            {x:250, y:250}
-          ],
-          rotation: 0,
-          weight: 50,
-          // width: 500,
-          // height: 200,
-          strokeStyle: 'black',
+          width: 50,
+          height: 300,
+          // strokeStyle: 'black',
           lineWidth: 2,
-          lineStyle: 'black'
-        }]
+          // lineStyle: 'black'
+        },
+        {
+          type: 'conveyor-join',
+          cx: 100,
+          cy: 100,
+          rx: 40,
+          ry: 40,
+          ratio: 56,
+          lineWidth: 2,
+          strokeStyle: 'black',
+          // fillStyle: 'red'
+          fillStyle: {
+            type: 'pattern',
+            image: 'images/conveyor_pattern.png',
+            // fitPattern: true
+          }
+        }
+      ]
       }
     });
     </script>
