@@ -11,9 +11,9 @@ const NATURE = {
   rotatable: true,
   properties : [{
     type: 'number',
-    label: 'rows',
-    name: 'rows',
-    property: 'rows'
+    label: 'width',
+    name: 'width',
+    property: 'width'
   }, {
     type: 'number',
     label: 'columns',

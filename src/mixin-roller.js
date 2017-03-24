@@ -40,14 +40,14 @@ function _drawPatternImageToOffcanvas(component) {
   ctx.strokeStyle = strokeStyle
   ctx.lineWidth = lineWidth
 
-  ctx.ellipse(left + width / 2, top + height - width/4, width / 2, width / 4, 0, 0, 2 * Math.PI);
+  ctx.ellipse(left + width / 2, top + height - width / 4 - lineWidth, width / 2, width / 4, 0, 0, 2 * Math.PI);
 
-  ctx.moveTo(left, top + height - width/4);
-  ctx.lineTo(left, top + width/4);
+  ctx.moveTo(left, top + height - width / 4);
+  ctx.lineTo(left, top + width / 4);
 
-  ctx.ellipse(left + width / 2, top + width/4, width / 2, width / 4, 0, Math.PI, 0);
+  ctx.ellipse(left + width / 2, top + width / 4 + lineWidth, width / 2, width / 4, 0, Math.PI, 0);
 
-  ctx.lineTo(left + width, top + height - width/4);
+  ctx.lineTo(left + width, top + height - width / 4);
   ctx.fill();
   ctx.stroke();
 
@@ -80,8 +80,6 @@ function _drawPatternImageToOffcanvas(component) {
   // ctx.lineTo(left + width, top + height - height / 14);
   //
   // ctx.stroke();
-
-  // component._isNotFirstDraw = true
 }
 
 export default (superclass) => {
