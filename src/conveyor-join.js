@@ -1,3 +1,5 @@
+import MixinRoller from './mixin-roller'
+
 var {
   Component,
   Rect,
@@ -28,13 +30,6 @@ const NATURE = {
 
 const RADIAN = 0.0174533 / Math.PI
 
-function hasAnyProperty(o, ...properties) {
-  for(let p in properties) {
-    if(o.hasOwnProperty(properties[p]))
-      return true
-  }
-}
-
 // function roundSet(round, width, height){
 //   var max = width > height ? (height / width) * 100 : 100
 //
@@ -47,7 +42,7 @@ function hasAnyProperty(o, ...properties) {
 // }
 
 
-export default class ConveyorJoin extends Donut {
+export default class ConveyorJoin extends MixinRoller(Donut) {
 
   get nature() {
     return NATURE

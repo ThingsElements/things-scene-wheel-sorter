@@ -2,10 +2,6 @@ var {
   Component
 } = scene;
 
-const STANDARD_WIDTH = 50
-const STANDARD_HEIGHT = 300
-const PATTERN_RATIO = STANDARD_WIDTH / STANDARD_HEIGHT
-
 function _drawPatternImageToOffcanvas(component) {
 
   var {
@@ -20,18 +16,13 @@ function _drawPatternImageToOffcanvas(component) {
     color = 'black'
   } = component.model;
 
-  width = height * PATTERN_RATIO
-
-  var left, top, width, height;
-  left = top = 0;
-  // width = 50;
-  // height = 300;
-
   if(!component._offcanvas)
     component._offcanvas = document.createElement('canvas');
 
-  component._offcanvas.width = width + 2;
-  component._offcanvas.height = height;
+  var radius = Math.min(width / 5, height / 5);
+
+  component._offcanvas.width = radius;
+  component._offcanvas.height = radius;
 
   var ctx = component._offcanvas.getContext('2d')
 
@@ -39,16 +30,7 @@ function _drawPatternImageToOffcanvas(component) {
   ctx.fillStyle = fillStyle
   ctx.strokeStyle = strokeStyle
   ctx.lineWidth = lineWidth
-
-  ctx.ellipse(left + width / 2, top + height - width / 4 - lineWidth, width / 2, width / 4, 0, 0, 2 * Math.PI);
-
-  ctx.moveTo(left, top + height - width / 4);
-  ctx.lineTo(left, top + width / 4);
-
-  ctx.ellipse(left + width / 2, top + width / 4 + lineWidth, width / 2, width / 4, 0, Math.PI, 0);
-
-  ctx.lineTo(left + width, top + height - width / 4);
-  ctx.fill();
+  ctx.ellipse(radius / 2, radius / 2, radius / 3, radius / 3, 0, 0, 2 * Math.PI, 0);
   ctx.stroke();
 }
 
