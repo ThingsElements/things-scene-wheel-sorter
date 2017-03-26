@@ -1,47 +1,52 @@
 var {
-  Component
+  Component,
+  ValueHolder
 } = scene;
 
-function _drawPatternImageToOffcanvas(component) {
+const FILL_STYLES = ['#666', '#060', '#660', '#600'] // IDLE, RUN, WARN, ERROR
+const STROKE_STYLES = ['#000', '#0F0', '#FF0', '#F00'] // IDLE, RUN, WARN, ERROR
+
+function pattern(component) {
 
   var {
     width,
-    height,
-    fillStyle = '#fff',
-    strokeStyle = '#666',
-    lineWidth = 1
+    height
   } = component.bounds;
 
-  var {
-    color = 'black'
-  } = component.model;
+  var color = FILL_STYLES[component.value] || FILL_STYLES[0]
+  var stroke = STROKE_STYLES[component.value] || STROKE_STYLES[0]
+  var lineWidth = 1
 
-  if(!component._offcanvas)
-    component._offcanvas = document.createElement('canvas');
+  var pattern_size = Math.min(width / 5, height / 5);
 
-  var radius = Math.min(width / 5, height / 5);
+  if(!component._sorter_pattern)
+    component._sorter_pattern = document.createElement('canvas');
 
-  component._offcanvas.width = radius;
-  component._offcanvas.height = radius;
+  component._sorter_pattern.width = pattern_size;
+  component._sorter_pattern.height = pattern_size;
 
-  var ctx = component._offcanvas.getContext('2d')
+  var ctx = component._sorter_pattern.getContext('2d')
 
   ctx.beginPath();
-  ctx.fillStyle = fillStyle
-  ctx.strokeStyle = strokeStyle
+  ctx.fillStyle = color
+  ctx.rect(0, 0, pattern_size, pattern_size);
+  ctx.fill();
+
+  ctx.beginPath();
+  ctx.strokeStyle = stroke
   ctx.lineWidth = lineWidth
-  ctx.ellipse(radius / 2, radius / 2, radius / 3, radius / 3, 0, 0, 2 * Math.PI, 0);
+  ctx.ellipse(pattern_size / 2, pattern_size / 2, pattern_size / 3, pattern_size / 3, 0, 0, 2 * Math.PI, 0);
   ctx.stroke();
+
+  return component._sorter_pattern
 }
 
 export default (superclass) => {
-  var A = class extends superclass {
+  var A = class extends ValueHolder(superclass) {
 
     get fillStyle() {
-      _drawPatternImageToOffcanvas(this);
-      this._pattern_image = this._offcanvas;
       return {
-        image: this._offcanvas.toDataURL(),
+        image: pattern(this),
         offsetX: 0,
         offsetY: 0,
         type: "pattern",

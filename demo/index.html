@@ -48,7 +48,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <things-scene-handler type="move-handler"></things-scene-handler>
       </things-scene-viewer>
 
-      <things-editor-properties id='props' target="{{selected.0.model}}" props="[[selected.0.nature.properties]]">
+      <things-editor-properties id='props' target="{{props}}" props="[[selected.0.nature.properties]]">
       </things-editor-properties>
 
       </template>
@@ -56,23 +56,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <script>
     window.addEventListener('WebComponentsReady', function(e) {
       var app = document.querySelector('#app')
+
+      app.props = {}
+
+      app.$.props.addEventListener('change', function() {
+        app.selected[0].set(app.props)
+      });
+
       app.model = {
         width: 1200,
         height: 800,
-        components: [
-        // {
-        //   type: 'ellipse',
-        //   name: 'select layer 테스트용 원',
-        //   cx: 45,
-        //   cy: 30,
-        //   rotation: 10,
-        //   rx: 20,
-        //   ry: 24,
-        //   strokeStyle: 'black',
-        //   fillStyle: 'black',
-        //   lineWidth: 1
-        // },
-        {
+        components: [{
           type: 'wheel-sorter',
           top: 50,
           left: 200,
@@ -109,8 +103,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           //   image: 'images/conveyor_pattern.png',
           //   // fitPattern: true
           // }
-        }
-      ]
+        }]
       }
     });
     </script>

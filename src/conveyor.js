@@ -12,9 +12,9 @@ const NATURE = {
   rotatable: true,
   properties : [{
     type: 'number',
-    label: 'width',
-    name: 'width',
-    property: 'width'
+    label: 'value',
+    name: 'value',
+    property: 'value'
   }]
 }
 
@@ -37,6 +37,7 @@ export default class Conveyor extends MixinRoller(RectPath(Shape)) {
   is3dish() {
     return true
   }
+
 }
 
 Component.register('conveyor', Conveyor);
