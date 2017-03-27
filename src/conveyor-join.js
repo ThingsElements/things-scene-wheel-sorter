@@ -25,6 +25,11 @@ const NATURE = {
     label: 'ratio',
     name: 'ratio',
     property: 'ratio'
+  }, {
+    type: 'number',
+    label: 'value',
+    name: 'value',
+    property: 'value'
   }]
 }
 
@@ -40,6 +45,55 @@ const RADIAN = 0.0174533 / Math.PI
 //
 //   return round
 // }
+
+var controlHandler = {
+
+  ondragmove: function(point, index, component) {
+    var { cx, rx } = component.model
+
+    var transcoorded = component.transcoordP2S(point.x, point.y)
+
+    var ratio = (transcoorded.x - cx) / rx * 100
+
+    ratio = ratio >= 100 || ratio <= -100 ? 100 : Math.abs(ratio)
+
+    component.set({ ratio })
+  }
+}
+
+var antiClockWiseControlHandler = {
+  ondragmove: function(point, index, component) {
+    var { cy, rx } = component.model;
+
+    var transcoorded = component.transcoordP2S(point.x, point.y);
+
+    var startAngle = (transcoorded.y - (cy - rx)) / (2 * rx) * (-Math.PI);
+
+    if(startAngle <= -Math.PI)
+      startAngle = -Math.PI;
+    else if(startAngle >= 0)
+      startAngle = 0;
+
+    component.set({ startAngle });
+  }
+}
+
+var clockwiseControlHandler = {
+  ondragmove: function(point, index, component) {
+    var { cy, rx } = component.model;
+
+    var transcoorded = component.transcoordP2S(point.x, point.y);
+
+    var endAngle = (transcoorded.y - (cy - rx)) / (2 * rx) * Math.PI;
+
+    if(endAngle < 0)
+      endAngle = 0;
+    else if(endAngle > Math.PI)
+      endAngle = Math.PI;
+
+    component.set({ endAngle });
+  }
+}
 
 
 export default class ConveyorJoin extends MixinRoller(Donut) {
@@ -82,6 +136,33 @@ export default class ConveyorJoin extends MixinRoller(Donut) {
     ctx.ellipse(cx, cy, Math.abs((rx / 100) * ratio), Math.abs((ry / 100) * ratio), 0, endAngle, startAngle, true);
 
     ctx.lineTo(rx * Math.cos(startAngle) + cx, rx * Math.sin(startAngle) + cy)
+  }
+
+  get controls() {
+
+    var { cx, cy, rx, ratio, startAngle, endAngle } = this.model;
+
+    var controls = [];
+
+    controls.push({
+      x: cx - rx,
+      y: cy - rx + 2 * (rx / Math.PI) * (-startAngle),
+      handler: antiClockWiseControlHandler
+    });
+
+    controls.push({
+      x: cx + rx,
+      y: cy - rx + 2 * (rx / Math.PI) * endAngle,
+      handler: clockwiseControlHandler
+    });
+
+    controls.push({
+      x: cx + (rx / 100) * ratio,
+      y: cy,
+      handler: controlHandler
+    });
+
+    return controls
   }
 }
 
