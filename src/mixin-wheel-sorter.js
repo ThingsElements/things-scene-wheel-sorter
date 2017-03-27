@@ -13,6 +13,10 @@ function pattern(component) {
     height
   } = component.bounds;
 
+  var {
+    tilt = 0
+  } = component.model;
+
   var color = FILL_STYLES[component.value] || FILL_STYLES[0]
   var stroke = STROKE_STYLES[component.value] || STROKE_STYLES[0]
   var lineWidth = 1
@@ -36,7 +40,19 @@ function pattern(component) {
   ctx.strokeStyle = stroke
   ctx.lineWidth = lineWidth
   ctx.ellipse(pattern_size / 2, pattern_size / 2, pattern_size / 3, pattern_size / 3, 0, 0, 2 * Math.PI, 0);
+
+  ctx.translate(pattern_size / 2, pattern_size / 2);
+  ctx.rotate(tilt);
+  ctx.translate(-pattern_size / 2, -pattern_size / 2);
+
+  ctx.moveTo(pattern_size / 3, pattern_size / 3);
+  ctx.lineTo(pattern_size / 3, pattern_size / 3 * 2);
+  ctx.moveTo(pattern_size / 3 * 2, pattern_size / 3);
+  ctx.lineTo(pattern_size / 3 * 2, pattern_size / 3 * 2);
+
   ctx.stroke();
+
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
 
   return component._sorter_pattern
 }

@@ -30,6 +30,11 @@ const NATURE = {
     label: 'value',
     name: 'value',
     property: 'value'
+  }, {
+    type: 'number',
+    label: 'rollWidth',
+    name: 'rollWidth',
+    property: 'rollWidth'
   }]
 }
 

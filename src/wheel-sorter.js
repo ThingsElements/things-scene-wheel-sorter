@@ -15,6 +15,11 @@ const NATURE = {
     label: 'value',
     name: 'value',
     property: 'value'
+  }, {
+    type: 'number',
+    label: 'tilt',
+    name: 'tilt',
+    property: 'tilt'
   }]
 }
 

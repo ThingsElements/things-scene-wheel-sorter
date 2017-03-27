@@ -3,31 +3,29 @@ var {
   ValueHolder
 } = scene;
 
-const STANDARD_WIDTH = 50
-const STANDARD_HEIGHT = 300
-const PATTERN_RATIO = STANDARD_WIDTH / STANDARD_HEIGHT
-
 const FILL_STYLES = ['#666', '#060', '#660', '#600'] // IDLE, RUN, WARN, ERROR
 const STROKE_STYLES = ['#000', '#0F0', '#FF0', '#F00'] // IDLE, RUN, WARN, ERROR
 
 function pattern(component) {
 
   var {
-    width,
     height
   } = component.bounds;
 
+  var {
+    rollWidth = 10
+  } = component.model;
+
+  rollWidth = Math.max(rollWidth, 1)
 
   var color = FILL_STYLES[component.value] || FILL_STYLES[0]
   var stroke = STROKE_STYLES[component.value] || STROKE_STYLES[0]
   var lineWidth = 1
 
-  width = height * PATTERN_RATIO
-
   if(!component._roller_pattern)
     component._roller_pattern = document.createElement('canvas');
 
-  component._roller_pattern.width = width + 2;
+  component._roller_pattern.width = rollWidth + 2;
   component._roller_pattern.height = height;
 
   var ctx = component._roller_pattern.getContext('2d')
@@ -37,14 +35,14 @@ function pattern(component) {
   ctx.strokeStyle = stroke
   ctx.lineWidth = lineWidth
 
-  ctx.ellipse(width / 2, height - width / 4 - lineWidth, width / 2, width / 4, 0, 0, 2 * Math.PI);
+  ctx.ellipse(rollWidth / 2, height - rollWidth / 4 - lineWidth, rollWidth / 2, rollWidth / 4, 0, 0, 2 * Math.PI);
 
-  ctx.moveTo(0, height - width / 4);
-  ctx.lineTo(0, width / 4);
+  ctx.moveTo(0, height - rollWidth / 4);
+  ctx.lineTo(0, rollWidth / 4);
 
-  ctx.ellipse(width / 2, width / 4 + lineWidth, width / 2, width / 4, 0, Math.PI, 0);
+  ctx.ellipse(rollWidth / 2, rollWidth / 4 + lineWidth, rollWidth / 2, rollWidth / 4, 0, Math.PI, 0);
 
-  ctx.lineTo(width, height - width / 4);
+  ctx.lineTo(rollWidth, height - rollWidth / 4);
   ctx.fill();
   ctx.stroke();
 

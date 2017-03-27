@@ -24,7 +24,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <link rel="import" href="./things-scene-wheel-sorter.html">
 
-    <style is="custom-style">
+    <link rel="import" href="../bower_components/things-theme/things-point-theme.html">
+
+    <style is="custom-style" include="things-point-theme">
     things-scene-viewer {
       display: block;
       width: 1200px;
@@ -59,6 +61,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       app.props = {}
 
+      setTimeout(function() {
+        app.scene.on('selected', function(after) {
+          var target = after[0]
+          var props = {}
+          if(target) {
+            target.nature.properties.forEach(function(prop) {
+              var property = prop.property
+              props[property] = target.model[property]
+            })
+          }
+          app.props = props
+        });
+      });
+
       app.$.props.addEventListener('change', function() {
         app.selected[0].set(app.props)
       });
@@ -75,61 +91,58 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           lineWidth: 1,
           strokeStyle: '#999',
           fillStyle: 'transparent',
-          // fillStyle: 'red',
-          lineWidth: 1
+          lineWidth: 2,
+          value: 1,
+          tilt: 1
         },
         {
           type: 'conveyor',
-          top: 300,
+          top: 350,
           left: 100,
           width: 500,
           height: 100,
           strokeStyle: 'black',
           lineWidth: 1,
-          lineStyle: 'black'
+          lineStyle: 'black',
+          value: 2,
+          rollWidth: 7
         },
         {
           type: 'conveyor-join',
           cx: 100,
-          cy: 100,
+          cy: 150,
           rx: 100,
           ry: 100,
-          startAngle: 0,
-          endAngle: Math.PI / 2,
-          ratio: 56,
+          startAngle: -Math.PI / 4,
+          endAngle: Math.PI / 4,
+          ratio: 34,
           lineWidth: 1,
           strokeStyle: 'black',
-          // fillStyle: 'red'
-          // fillStyle: {
-          //   type: 'pattern',
-          //   image: 'images/conveyor_pattern.png',
-          //   // fitPattern: true
-          // }
+          value: 1,
+          rollWidth: 5
         },
         {
           type: 'scanner',
           top: 100,
           left: 450,
-          width: 200,
-          height: 200,
+          width: 150,
+          height: 100,
           lineWidth: 1,
           strokeStyle: '#999',
           fillStyle: 'transparent',
-          // fillStyle: 'red',
-          lineWidth: 1
+          lineWidth: 1,
+          value: 2,
+          rollWidth: 3
         },
         {
           type: 'conveyor-join-trapezoid',
-          top: 400,
-          left: 150,
-          width: 200,
-          height: 200,
           lineWidth: 1,
-          path: [{x:100, y:100}, {x: 200, y:100}, {x: 200, y: 200}, {x: 100, y: 200}],
+          path: [{x:50, y:150}, {x: 150, y:150}, {x: 150, y: 250}, {x: 100, y: 300}, {x: 50, y: 250}],
           strokeStyle: '#999',
           fillStyle: 'transparent',
-          // fillStyle: 'red',
-          lineWidth: 1
+          lineWidth: 1,
+          value: 3,
+          rollWidth: 10
         }]
       }
     });
