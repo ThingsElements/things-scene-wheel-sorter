@@ -1,6 +1,9 @@
+import MixinScanner from './mixin-scanner'
+
 var {
   Component,
-  RectPath
+  RectPath,
+  Shape
 } = scene;
 
 const NATURE = {
@@ -9,35 +12,30 @@ const NATURE = {
   rotatable: true,
   properties : [{
     type: 'number',
-    label: 'rows',
-    name: 'rows',
-    property: 'rows'
-  }, {
-    type: 'number',
-    label: 'columns',
-    name: 'columns',
-    property: 'columns'
+    label: 'value',
+    name: 'value',
+    property: 'value'
   }]
 }
 
-function hasAnyProperty(o, ...properties) {
-  for(let p in properties) {
-    if(o.hasOwnProperty(properties[p]))
-      return true
-  }
-}
-
-export default class Scanner extends RectPath(Component) {
+export default class Scanner extends MixinScanner(RectPath(Shape)) {
 
   get nature() {
     return NATURE
   }
 
-  onchange(after, before) {
+  _draw(ctx) {
+
+    var {
+      width, height, left, top,
+    } = this.model;
+
+    ctx.beginPath();
+    ctx.rect(left, top, width, height);
   }
 
-  _draw(context) {
-    super._draw(context)
+  is3dish() {
+    return true
   }
 }
 
