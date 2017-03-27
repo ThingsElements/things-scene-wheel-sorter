@@ -107,16 +107,13 @@ export default class ConveyorJoin extends MixinRoller(Donut) {
     return NATURE
   }
 
-  onchange(after, before) {
-  }
-
   is3dish() {
     return true
   }
 
   _draw(ctx) {
 
-    //super._draw(ctx);
+    this.animOnState()
 
     var {
       ratio = 50,

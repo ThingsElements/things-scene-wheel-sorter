@@ -31,6 +31,11 @@ export default class ConveyorJoinTrapezoid extends MixinRoller(Polygon) {
   is3dish() {
     return true
   }
+
+  _draw(context) {
+    this.animOnState()
+    super._draw(context)
+  }
 }
 
 Component.register('conveyor-join-trapezoid', ConveyorJoinTrapezoid);

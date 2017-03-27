@@ -35,7 +35,8 @@ function pattern(component) {
   ctx.strokeStyle = stroke
   ctx.lineWidth = lineWidth
 
-  ctx.ellipse(rollWidth / 2, height - rollWidth / 4 - lineWidth, rollWidth / 2, rollWidth / 4, 0, 0, 2 * Math.PI);
+  // ctx.ellipse(rollWidth / 2, height - rollWidth / 4 - lineWidth, rollWidth / 2, rollWidth / 4, 0, 0, 2 * Math.PI);
+  ctx.ellipse(rollWidth / 2, height - rollWidth / 4 - lineWidth, rollWidth / 2, rollWidth / 4, 0, 0, Math.PI);
 
   ctx.moveTo(0, height - rollWidth / 4);
   ctx.lineTo(0, rollWidth / 4);
@@ -43,7 +44,16 @@ function pattern(component) {
   ctx.ellipse(rollWidth / 2, rollWidth / 4 + lineWidth, rollWidth / 2, rollWidth / 4, 0, Math.PI, 0);
 
   ctx.lineTo(rollWidth, height - rollWidth / 4);
+
   ctx.fill();
+  ctx.stroke();
+
+  ctx.globalAlpha = 0.2
+
+  ctx.lineWidth = rollWidth / 3;
+  ctx.moveTo(component._step % rollWidth, height - rollWidth / 4);
+  ctx.lineTo(component._step % rollWidth, rollWidth / 4);
+
   ctx.stroke();
 
   return component._roller_pattern
@@ -52,6 +62,23 @@ function pattern(component) {
 export default (superclass) => {
 
   var A = class extends ValueHolder(superclass) {
+
+    animOnState() {
+      if(this.value !== 1)
+        return
+
+      if(!this._step)
+        this._step = 0
+
+      this._step++
+
+      var self = this
+
+      requestAnimationFrame(function() {
+        self.clearCache()
+        self.invalidate()
+      })
+    }
 
     get fillStyle() {
       return {

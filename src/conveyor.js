@@ -35,6 +35,8 @@ export default class Conveyor extends MixinRoller(RectPath(Shape)) {
       width, height, left, top,
     } = this.model;
 
+    this.animOnState()
+
     ctx.beginPath();
     ctx.rect(left, top, width, height);
   }

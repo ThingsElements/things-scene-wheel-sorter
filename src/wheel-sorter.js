@@ -31,6 +31,8 @@ export default class WheelSorter extends MixinWheelSorter(RectPath(Shape)) {
 
   _draw(ctx) {
 
+    this.animOnState();
+
     var {
       width, height, left, top,
     } = this.model;

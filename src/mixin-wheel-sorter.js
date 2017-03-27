@@ -60,6 +60,31 @@ function pattern(component) {
 export default (superclass) => {
   var A = class extends ValueHolder(superclass) {
 
+    animOnState() {
+      if(this.value !== 1)
+        return
+
+      var self = this
+      var tilt = this.get('tilt') || 0
+      var alpha = Math.floor(Math.random() * 100)
+      if(alpha < 2)
+        alpha = 4
+      else if(alpha < 4)
+        alpha = 3
+      else if(alpha > 97)
+        alpha = 2
+      else if(alpha > 95)
+        alpha = 1
+      else
+        alpha = 0
+
+      requestAnimationFrame(function() {
+        if(alpha)
+          self.set('tilt', (tilt + alpha) % 3 - 1)
+        self.invalidate()
+      })
+    }
+
     get fillStyle() {
       return {
         image: pattern(this),
