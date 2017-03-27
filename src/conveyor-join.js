@@ -144,15 +144,25 @@ export default class ConveyorJoin extends MixinRoller(Donut) {
 
     var controls = [];
 
+    // controls.push({
+    //   x: cx - rx,
+    //   y: cy - rx + 2 * (rx / Math.PI) * (-startAngle),
+    //   handler: antiClockWiseControlHandler
+    // });
+
     controls.push({
-      x: cx - rx,
-      y: cy - rx + 2 * (rx / Math.PI) * (-startAngle),
+      // x: cx + (2 * cy - rx - rx * ratio / 100) / 2 * Math.sin(startAngle),
+      x: cx + (rx + rx * ratio / 100) / 2 * Math.sin(startAngle),
+      // y: cy - (2 * cy - rx - rx * ratio / 100) / 2 * Math.cos(startAngle),
+      y: cy - (rx + rx * ratio / 100) / 2 * Math.cos(startAngle),
       handler: antiClockWiseControlHandler
     });
 
     controls.push({
-      x: cx + rx,
-      y: cy - rx + 2 * (rx / Math.PI) * endAngle,
+      // x: cx + rx,
+      x: cx + (rx + rx * ratio / 100) / 2 * Math.sin(endAngle),
+      // y: cy - rx + 2 * (rx / Math.PI) * endAngle,
+      y: cy - (rx + rx * ratio / 100) / 2 * Math.cos(endAngle),
       handler: clockwiseControlHandler
     });
 
