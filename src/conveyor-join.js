@@ -40,17 +40,6 @@ const NATURE = {
 
 const RADIAN = 0.0174533 / Math.PI
 
-// function roundSet(round, width, height){
-//   var max = width > height ? (height / width) * 100 : 100
-//
-//   if(round >= max)
-//     round = max
-//   else if(round <= 0)
-//     round = 0
-//
-//   return round
-// }
-
 var controlHandler = {
 
   ondragmove: function(point, index, component) {
@@ -154,24 +143,14 @@ export default class ConveyorJoin extends MixinRoller(Donut) {
 
     var controls = [];
 
-    // controls.push({
-    //   x: cx - rx,
-    //   y: cy - rx + 2 * (rx / Math.PI) * (-startAngle),
-    //   handler: antiClockWiseControlHandler
-    // });
-
     controls.push({
-      // x: cx + (2 * cy - rx - rx * ratio / 100) / 2 * Math.sin(startAngle),
       x: cx + (rx + rx * ratio / 100) / 2 * Math.sin(startAngle),
-      // y: cy - (2 * cy - rx - rx * ratio / 100) / 2 * Math.cos(startAngle),
       y: cy - (rx + rx * ratio / 100) / 2 * Math.cos(startAngle),
       handler: antiClockWiseControlHandler
     });
 
     controls.push({
-      // x: cx + rx,
       x: cx + (rx + rx * ratio / 100) / 2 * Math.sin(endAngle),
-      // y: cy - rx + 2 * (rx / Math.PI) * endAngle,
       y: cy - (rx + rx * ratio / 100) / 2 * Math.cos(endAngle),
       handler: clockwiseControlHandler
     });
