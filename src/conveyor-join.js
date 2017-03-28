@@ -68,16 +68,20 @@ var controlHandler = {
 
 var antiClockWiseControlHandler = {
   ondragmove: function(point, index, component) {
-    var { cy, rx } = component.model;
+    var { cx, cy } = component.model;
 
     var transcoorded = component.transcoordP2S(point.x, point.y);
 
-    var startAngle = (transcoorded.y - (cy - rx)) / (2 * rx) * (-Math.PI);
+    var theta = Math.atan2(-(transcoorded.y - cy), (transcoorded.x - cx));
 
-    if(startAngle <= -Math.PI)
-      startAngle = -Math.PI;
-    else if(startAngle >= 0)
-      startAngle = 0;
+    if(theta > 0)
+      if(theta <= Math.PI/2)
+        theta = Math.PI/2;
+    if(theta < 0)
+      if(theta >= -Math.PI/2)
+        theta = -Math.PI/2;
+
+    var startAngle = -theta + Math.PI/2;
 
     component.set({ startAngle });
   }
@@ -85,16 +89,20 @@ var antiClockWiseControlHandler = {
 
 var clockwiseControlHandler = {
   ondragmove: function(point, index, component) {
-    var { cy, rx } = component.model;
+    var { cx, cy } = component.model;
 
     var transcoorded = component.transcoordP2S(point.x, point.y);
 
-    var endAngle = (transcoorded.y - (cy - rx)) / (2 * rx) * Math.PI;
+    var theta = Math.atan2(-(transcoorded.y - cy), (transcoorded.x - cx));
 
-    if(endAngle < 0)
-      endAngle = 0;
-    else if(endAngle > Math.PI)
-      endAngle = Math.PI;
+    if(theta > 0)
+      if(theta >= Math.PI/2)
+        theta = Math.PI/2;
+    if(theta < 0)
+      if(theta <= -Math.PI/2)
+        theta = -Math.PI/2;
+
+    var endAngle = -theta + Math.PI/2;
 
     component.set({ endAngle });
   }
