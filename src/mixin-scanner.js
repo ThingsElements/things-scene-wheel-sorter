@@ -27,10 +27,14 @@ function pattern(component) {
 
   var ctx = component._scanner_pattern.getContext('2d')
 
+  ctx.globalAlpha = 0.5
+
   ctx.beginPath();
   ctx.fillStyle = color
   ctx.rect(0, 0, pattern_size, pattern_size);
   ctx.fill();
+
+  ctx.globalAlpha = 0.8
 
   ctx.beginPath();
   ctx.strokeStyle = stroke;
