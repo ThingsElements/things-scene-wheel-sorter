@@ -64,7 +64,7 @@ export default (superclass) => {
   var A = class extends ValueHolder(superclass) {
 
     animOnState() {
-      if(this.value !== 1)
+      if(this.value !== 1 || this.disposed)
         return
 
       if(!this._step)
