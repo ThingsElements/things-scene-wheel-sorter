@@ -3,8 +3,8 @@ var {
   ValueHolder
 } = scene;
 
-const FILL_STYLES = ['#666', '#060', '#660', '#600'] // IDLE, RUN, WARN, ERROR
-const STROKE_STYLES = ['#000', '#0F0', '#FF0', '#F00'] // IDLE, RUN, WARN, ERROR
+const FILL_STYLES = ['#aaa', '#6599cd', '#ffba00', '#e9746b'] // IDLE, RUN, WARN, ERROR
+const STROKE_STYLES = ['#999', '#003366', '#d96f21', '#a73928'] // IDLE, RUN, WARN, ERROR
 
 function pattern(component) {
 
