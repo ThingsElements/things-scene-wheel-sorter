@@ -11,12 +11,12 @@ const NATURE = {
   resizable: true,
   rotatable: true,
   properties : [{
-    type: 'number',
+    type: 'angle',
     label: 'startAngle',
     name: 'startAngle',
     property: 'startAngle'
   }, {
-    type: 'number',
+    type: 'angle',
     label: 'endAngle',
     name: 'endAngle',
     property: 'endAngle'
