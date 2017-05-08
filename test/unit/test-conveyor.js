@@ -2,7 +2,7 @@ import './util'
 
 import { expect } from 'chai'
 
-import '../../bower_components/things-scene/things-scene-min'
+import '../../bower_components/things-scene-core/things-scene-min'
 import { Conveyor } from '../../src/index'
 
 describe('Conveyor', function () {
