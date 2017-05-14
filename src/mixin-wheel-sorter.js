@@ -17,6 +17,10 @@ function pattern(component) {
     tilt = 0
   } = component.model;
 
+  tilt += component.delta('tilt') || 0
+  tilt %= 3
+  tilt -= 1
+
   var color = FILL_STYLES[component.value] || FILL_STYLES[0]
   var stroke = STROKE_STYLES[component.value] || STROKE_STYLES[0]
   var lineWidth = 1
@@ -65,22 +69,18 @@ export default (superclass) => {
         return
 
       var self = this
-      var tilt = this.get('tilt') || 0
+
       var alpha = Math.floor(Math.random() * 100)
-      if(alpha < 2)
-        alpha = 4
-      else if(alpha < 4)
-        alpha = 3
-      else if(alpha > 97)
+      if(alpha < 10)
         alpha = 2
-      else if(alpha > 95)
+      else if(alpha > 90)
         alpha = 1
       else
         alpha = 0
 
       requestAnimationFrame(function() {
-        if(alpha)
-          self.set('tilt', (tilt + alpha) % 3 - 1)
+        self.delta('tilt', alpha)
+        self.clearCache()
         self.invalidate()
       })
     }
