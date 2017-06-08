@@ -3,8 +3,8 @@ var {
   ValueHolder
 } = scene;
 
-const FILL_STYLES = ['#666', '#060', '#660', '#600'] // IDLE, RUN, WARN, ERROR
-const STROKE_STYLES = ['#000', '#0F0', '#FF0', '#F00'] // IDLE, RUN, WARN, ERROR
+const FILL_STYLES = ['#666', '#060', '#060', '#660', '#600'] // IDLE, RUN, RUN(REVERSE), WARN, ERROR
+const STROKE_STYLES = ['#000', '#0F0', '#0F0', '#FF0', '#F00'] // IDLE, RUN, RUN(REVERSE), WARN, ERROR
 
 function pattern(component) {
 
@@ -49,8 +49,12 @@ function pattern(component) {
 
   ctx.globalAlpha = 0.2;
 
-  ctx.moveTo(component._step % (rollWidth), height * 0.95);
-  ctx.lineTo(component._step % (rollWidth), height * 0.05);
+  var x_for_belt = component._step % rollWidth;
+  if(component.value == 2)
+    x_for_belt = rollWidth - x_for_belt;
+
+  ctx.moveTo(x_for_belt, height * 0.95);
+  ctx.lineTo(x_for_belt, height * 0.05);
 
   ctx.stroke();
 
@@ -63,10 +67,10 @@ export default (superclass) => {
   var A = class extends ValueHolder(superclass) {
 
     animOnState() {
-      if(this.value !== 1 || this.disposed)
+      if((this.value !== 1 && this.value !== 2) || this.disposed)
         return
 
-      if(!this._step)
+      if(!this._step || this._step > 40000)
         this._step = 0
 
       this._step++

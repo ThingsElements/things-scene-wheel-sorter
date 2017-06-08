@@ -3,8 +3,8 @@ var {
   ValueHolder
 } = scene;
 
-const FILL_STYLES = ['#aaa', '#6599cd', '#ffba00', '#e9746b'] // IDLE, RUN, WARN, ERROR
-const STROKE_STYLES = ['#999', '#003366', '#d96f21', '#a73928'] // IDLE, RUN, WARN, ERROR
+const FILL_STYLES = ['#aaa', '#6599cd', '#6599cd', '#ffba00', '#e9746b'] // IDLE, RUN, RUN(REVERSE), WARN, ERROR
+const STROKE_STYLES = ['#999', '#003366', '#003366', '#d96f21', '#a73928'] // IDLE, RUN, RUN(REVERSE), WARN, ERROR
 
 function pattern(component) {
 
@@ -51,8 +51,13 @@ function pattern(component) {
   ctx.globalAlpha = 0.2
 
   ctx.lineWidth = rollWidth / 3;
-  ctx.moveTo(component._step % rollWidth, height - rollWidth / 4);
-  ctx.lineTo(component._step % rollWidth, rollWidth / 4);
+
+  var x_for_roll = component._step % rollWidth;
+  if(component.value == 2)
+    x_for_roll = rollWidth - x_for_roll;
+
+  ctx.moveTo(x_for_roll, height - rollWidth / 4);
+  ctx.lineTo(x_for_roll, rollWidth / 4);
 
   ctx.stroke();
 
@@ -64,11 +69,11 @@ export default (superclass) => {
   var A = class extends ValueHolder(superclass) {
 
     animOnState() {
-      if(this.value !== 1 || this.disposed)
+      if((this.value !== 1 && this.value !== 2) || this.disposed)
         return
 
-      if(!this._step)
-        this._step = 0
+      if(!this._step || this._step > 40000)
+        this._step = this.value == 0
 
       this._step++
 
