@@ -3,7 +3,7 @@ var {
   ValueHolder
 } = scene;
 
-const FILL_STYLES = ['#666', '#060', '#060', '#660', '#600'] // IDLE, RUN, RUN(REVERSE), WARN, ERROR
+const FILL_STYLES = ['#666', '#000', '#000', '#660', '#600'] // IDLE, RUN, RUN(REVERSE), WARN, ERROR
 const STROKE_STYLES = ['#000', '#0F0', '#0F0', '#FF0', '#F00'] // IDLE, RUN, RUN(REVERSE), WARN, ERROR
 
 function pattern(component) {
@@ -31,7 +31,7 @@ function pattern(component) {
   var ctx = component._roller_pattern.getContext('2d')
 
   ctx.beginPath();
-  ctx.fillStyle = "#000"
+  ctx.fillStyle = color;//"#000"
   ctx.strokeStyle = stroke
   ctx.lineWidth = lineWidth
 
@@ -47,9 +47,9 @@ function pattern(component) {
   ctx.strokeStyle = stroke
   ctx.lineWidth = 1;
 
-  ctx.globalAlpha = 0.2;
+  ctx.globalAlpha = 0.5;
 
-  var x_for_belt = component._step % rollWidth;
+  var x_for_belt = (component._step || 0) % rollWidth;
   if(component.value == 2)
     x_for_belt = rollWidth - x_for_belt;
 
@@ -57,7 +57,6 @@ function pattern(component) {
   ctx.lineTo(x_for_belt, height * 0.05);
 
   ctx.stroke();
-
 
   return component._roller_pattern
 }
