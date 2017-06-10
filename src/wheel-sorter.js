@@ -30,6 +30,11 @@ const NATURE = {
     label: 'Error Code',
     name: 'error_code',
     property: 'error_code'
+  }, {
+    type: 'checkbox',
+    label: 'Animated',
+    name: 'animated',
+    property: 'animated'
   }]
 }
 
@@ -79,11 +84,11 @@ export default class WheelSorter extends MixinWheelSorter(RectPath(Shape)) {
   
   _draw(ctx) {
 
-    // this.animOnState();
-
     var {
-      width, height, left, top,
+      width, height, left, top, animated
     } = this.model;
+
+    animated && this.animOnState();
 
     ctx.beginPath();
     ctx.rect(left, top, width, height);

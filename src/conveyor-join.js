@@ -1,4 +1,4 @@
-import MixinRoller from './mixin-roller'
+import MixinRoller from './mixin-conveyor'
 
 var {
   Component,
@@ -11,6 +11,11 @@ const NATURE = {
   resizable: true,
   rotatable: true,
   properties : [{
+    type: 'number',
+    label: 'Conveyor Type',
+    name: 'conveyorType',
+    property: 'conveyorType'
+  }, {
     type: 'angle',
     label: 'startAngle',
     name: 'startAngle',
@@ -45,6 +50,11 @@ const NATURE = {
     label: 'Error Code',
     name: 'error_code',
     property: 'error_code'
+  }, {
+    type: 'checkbox',
+    label: 'Animated',
+    name: 'animated',
+    property: 'animated'
   }]
 }
 
@@ -158,8 +168,6 @@ export default class ConveyorJoin extends MixinRoller(Donut) {
 
   _draw(ctx) {
 
-    // this.animOnState()
-
     var {
       ratio = 50,
       cx,
@@ -167,8 +175,11 @@ export default class ConveyorJoin extends MixinRoller(Donut) {
       rx,
       ry,
       startAngle = 0,
-      endAngle = Math.PI / 2
+      endAngle = Math.PI / 2,
+      animated = false
     } = this.model;
+
+    animated && this.animOnState()
 
     ctx.beginPath();
 

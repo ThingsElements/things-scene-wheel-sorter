@@ -1,4 +1,4 @@
-import MixinRoller from './mixin-roller'
+import MixinRoller from './mixin-conveyor'
 
 var {
   Component,
@@ -12,7 +12,12 @@ const NATURE = {
   rotatable: true,
   properties : [{
     type: 'number',
-    label: 'rollWidth',
+    label: 'Conveyor Type',
+    name: 'conveyorType',
+    property: 'conveyorType'
+  }, {
+    type: 'number',
+    label: 'Roll Width',
     name: 'rollWidth',
     property: 'rollWidth'
   }, {
@@ -30,6 +35,11 @@ const NATURE = {
     label: 'Error Code',
     name: 'error_code',
     property: 'error_code'
+  }, {
+    type: 'checkbox',
+    label: 'Animated',
+    name: 'animated',
+    property: 'animated'
   }]
 }
 
@@ -47,10 +57,10 @@ export default class Conveyor extends MixinRoller(RectPath(Shape)) {
   _draw(ctx) {
 
     var {
-      width, height, left, top,
+      width, height, left, top, animated = false
     } = this.model;
 
-    // this.animOnState()
+    animated && this.animOnState()
 
     ctx.beginPath();
     ctx.rect(left, top, width, height);
@@ -96,3 +106,4 @@ export default class Conveyor extends MixinRoller(RectPath(Shape)) {
 }
 
 Component.register('conveyor', Conveyor);
+Component.register('conveyor-belt', Conveyor);

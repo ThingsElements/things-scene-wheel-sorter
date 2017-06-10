@@ -1,4 +1,4 @@
-import MixinRoller from './mixin-roller'
+import MixinRoller from './mixin-conveyor'
 
 var {
   Component,
@@ -10,6 +10,11 @@ const NATURE = {
   resizable: true,
   rotatable: true,
   properties : [{
+    type: 'number',
+    label: 'Conveyor Type',
+    name: 'conveyorType',
+    property: 'conveyorType'
+  }, {
     type: 'number',
     label: 'rollWidth',
     name: 'rollWidth',
@@ -29,6 +34,11 @@ const NATURE = {
     label: 'Error Code',
     name: 'error_code',
     property: 'error_code'
+  }, {
+    type: 'checkbox',
+    label: 'Animated',
+    name: 'animated',
+    property: 'animated'
   }]
 }
 
@@ -81,7 +91,7 @@ export default class ConveyorJoinTrapezoid extends MixinRoller(Polygon) {
   }
 
   _draw(context) {
-    // this.animOnState()
+    this.get('animated') && this.animOnState()
     super._draw(context)
   }
 }
