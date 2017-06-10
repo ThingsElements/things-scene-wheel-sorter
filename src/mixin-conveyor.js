@@ -46,9 +46,6 @@ function pattern_for_belt_type(component) {
   context.fill();
 
   context.beginPath();
-  // context.fillStyle = color
-  // context.strokeStyle = stroke
-  // context.lineWidth = 1;
 
   context.globalAlpha = 0.2;
 
