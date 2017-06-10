@@ -80,7 +80,7 @@ export default (superclass) => {
 
       requestAnimationFrame(function() {
         self.delta('tilt', alpha)
-        self.clearCache()
+        self.clearCache('fillStyle')
         self.invalidate()
       })
     }

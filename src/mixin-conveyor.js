@@ -139,7 +139,7 @@ export default (superclass) => {
       var self = this
 
       requestAnimationFrame(function() {
-        self.clearCache()
+        self.clearCache('fillStyle')
         self.invalidate()
       })
     }
