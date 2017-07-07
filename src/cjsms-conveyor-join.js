@@ -1,3 +1,6 @@
+/*
+ * Copyright © HatioLab Inc. All rights reserved.
+ */
 import MixinRoller from './mixin-conveyor'
 
 var {
@@ -161,7 +164,7 @@ export default class CJSMSConveyorJoin extends MixinRoller(Donut) {
       })
     }
   }
-  
+
   is3dish() {
     return true
   }

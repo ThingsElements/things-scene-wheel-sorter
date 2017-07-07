@@ -16,7 +16,7 @@
     "url": "git+https://github.com/ThingsElements/things-scene-wheel-sorter.git"
   },
   "author": "",
-  "license": "ISC",
+  "license": "http://things-scene.hatiolab.com/EULA/",
   "bugs": {
     "url": "https://github.com/ThingsElements/things-scene-wheel-sorter/issues"
   },
@@ -39,6 +39,5 @@
     "watchify": "^3.3.1",
     "node-canvas": "Automattic/node-canvas"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }

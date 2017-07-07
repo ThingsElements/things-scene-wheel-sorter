@@ -1,3 +1,6 @@
+/*
+ * Copyright © HatioLab Inc. All rights reserved.
+ */
 var {
   Component,
   ValueHolder
@@ -56,7 +59,7 @@ function pattern_for_belt_type(component) {
   context.moveTo(x_for_belt, height);
   context.lineTo(x_for_belt, 0);
 
-  context.stroke();  
+  context.stroke();
 
   return component._roller_pattern
 }
@@ -113,7 +116,7 @@ function pattern_for_roller_type(component) {
   context.moveTo(x_for_roll, height - width / 4);
   context.lineTo(x_for_roll, width / 4);
 
-  context.stroke();  
+  context.stroke();
 
   return component._roller_pattern
 }

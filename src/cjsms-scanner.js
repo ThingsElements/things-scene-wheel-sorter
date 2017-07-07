@@ -1,3 +1,6 @@
+/*
+ * Copyright © HatioLab Inc. All rights reserved.
+ */
 import MixinScanner from './mixin-scanner'
 
 var {

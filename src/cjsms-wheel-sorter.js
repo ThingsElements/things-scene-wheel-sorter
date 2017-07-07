@@ -1,3 +1,6 @@
+/*
+ * Copyright © HatioLab Inc. All rights reserved.
+ */
 import MixinWheelSorter from './mixin-wheel-sorter'
 
 var {
@@ -81,7 +84,7 @@ export default class CJSMSWheelSorter extends MixinWheelSorter(RectPath(Shape)) 
       })
     }
   }
-  
+
   _draw(ctx) {
 
     var {
