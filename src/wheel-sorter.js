@@ -20,7 +20,7 @@ const NATURE = {
     property: 'tilt'
   }, {
     type: 'number',
-    label: 'wheel-size',
+    label: 'Wheel Size',
     name: 'wheelSize',
     property: 'wheelSize'
   }, {
