@@ -1,13 +1,13 @@
 {
   "name": "things-scene-wheel-sorter",
-  "version": "2.0.0",
+  "version": "2.0.15",
   "description": "An element providing a starting point for your own reusable Polymer elements.",
   "main": "index.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "serve": "watchify src/*.js -o things-scene-wheel-sorter.js src/index.js & polyserve",
+    "serve": "watchify src/*.js -o things-scene-wheel-sorter.js src/index.js & polymer serve",
     "test": "./node_modules/.bin/mocha --require should --compilers js:babel-core/register test/**/test-*.js",
     "build": "browserify src/index.js -o things-scene-wheel-sorter.js && uglifyjs things-scene-wheel-sorter.js -o things-scene-wheel-sorter-min.js"
   },

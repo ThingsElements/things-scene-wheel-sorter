@@ -13,11 +13,16 @@ const NATURE = {
   mutable: false,
   resizable: true,
   rotatable: true,
-  properties : [{
+  properties: [{
     type: 'number',
     label: 'tilt',
     name: 'tilt',
     property: 'tilt'
+  }, {
+    type: 'number',
+    label: 'wheel-size',
+    name: 'wheelSize',
+    property: 'wheelSize'
   }, {
     type: 'number',
     label: 'value',

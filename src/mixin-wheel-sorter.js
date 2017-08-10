@@ -17,7 +17,8 @@ function pattern(component) {
   } = component.bounds;
 
   var {
-    tilt = 0
+    tilt = 0,
+    wheelSize = 3
   } = component.model;
 
   tilt += component.delta('tilt') || 0
@@ -28,9 +29,9 @@ function pattern(component) {
   var stroke = STROKE_STYLES[component.value] || STROKE_STYLES[0]
   var lineWidth = 1
 
-  var pattern_size = Math.min(width / 5, height / 5);
+  var pattern_size = wheelSize * 10 || Math.min(width / 5, height / 5);
 
-  if(!component._sorter_pattern)
+  if (!component._sorter_pattern)
     component._sorter_pattern = document.createElement('canvas');
 
   component._sorter_pattern.width = pattern_size;
@@ -68,20 +69,20 @@ export default (superclass) => {
   var A = class extends ValueHolder(superclass) {
 
     animOnState() {
-      if(this.value !== 1 || this.disposed)
+      if (this.value !== 1 || this.disposed)
         return
 
       var self = this
 
       var alpha = Math.floor(Math.random() * 100)
-      if(alpha < 10)
+      if (alpha < 10)
         alpha = 2
-      else if(alpha > 90)
+      else if (alpha > 90)
         alpha = 1
       else
         alpha = 0
 
-      requestAnimationFrame(function() {
+      requestAnimationFrame(function () {
         self.delta('tilt', alpha)
         self.clearCache('fillStyle')
         self.invalidate()
