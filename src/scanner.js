@@ -6,7 +6,7 @@ import MixinScanner from './mixin-scanner'
 var {
   Component,
   RectPath,
-  Shape
+  Rect
 } = scene;
 
 const NATURE = {
@@ -18,6 +18,11 @@ const NATURE = {
     label: 'value',
     name: 'value',
     property: 'value'
+  }, {
+    type: 'number',
+    label: 'round',
+    name: 'round',
+    property: 'round'
   }]
 }
 
@@ -26,7 +31,7 @@ const STAT_RUN = 1;
 const STAT_CHUTE_FULL = 2;
 const STAT_ERROR = 3;
 
-export default class Scanner extends MixinScanner(RectPath(Shape)) {
+export default class Scanner extends MixinScanner(RectPath(Rect)) {
 
   get nature() {
     return NATURE
@@ -39,7 +44,7 @@ export default class Scanner extends MixinScanner(RectPath(Shape)) {
     } = this.model;
 
     ctx.beginPath();
-    ctx.rect(left, top, width, height);
+    super._draw(ctx)
   }
 
   is3dish() {
