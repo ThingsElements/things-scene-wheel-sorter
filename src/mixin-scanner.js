@@ -6,8 +6,8 @@ var {
   ValueHolder
 } = scene;
 
-const FILL_STYLES = ['rgba(255,255,255,.7)', 'rgba(101,153,205,.7)', 'rgba(255,186,0,.7)', 'rgba(233,166,107,.7)'] // IDLE, RUN, WARN, ERROR
-const STROKE_STYLES = ['rgba(0,0,0,.4)', 'rgba(0,51,102,.7)', 'rgba(217,111,33,.7)', 'rgba(167,57,40,.7)'] // IDLE, RUN, WARN, ERROR
+const FILL_STYLES = ['rgba(0,0,0,.4)', 'rgba(255,255,255,.7)', 'rgba(255,186,0,.7)', 'rgba(198,50,40,.7)'] // IDLE, RUN, WARN, ERROR
+const STROKE_STYLES = ['rgba(0,0,0,.7)', 'rgba(255,255,255,1)', 'rgba(255,186,0,1)', 'rgba(198,50,40,1)'] // IDLE, RUN, WARN, ERROR
 
 function pattern(component) {
 
@@ -125,3 +125,4 @@ export default (superclass) => {
 
   return A
 }
+

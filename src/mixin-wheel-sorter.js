@@ -6,64 +6,8 @@ var {
   ValueHolder
 } = scene;
 
-const FILL_STYLES = ['#aaa', '#6599cd', '#ffba00', '#e9746b'] // IDLE, RUN, WARN, ERROR
-const STROKE_STYLES = ['#999', '#003366', '#d96f21', '#a73928'] // IDLE, RUN, WARN, ERROR
-
-function pattern(component) {
-
-  var {
-    width,
-    height
-  } = component.bounds;
-
-  var {
-    tilt = 0,
-    wheelSize = 3
-  } = component.model;
-
-  tilt += component.delta('tilt') || 0
-  tilt %= 3
-  tilt -= 1
-
-  var color = FILL_STYLES[component.value] || FILL_STYLES[0]
-  var stroke = STROKE_STYLES[component.value] || STROKE_STYLES[0]
-  var lineWidth = 1
-
-  var pattern_size = wheelSize * 10 || Math.min(width / 5, height / 5);
-
-  if (!component._sorter_pattern)
-    component._sorter_pattern = document.createElement('canvas');
-
-  component._sorter_pattern.width = pattern_size;
-  component._sorter_pattern.height = pattern_size;
-
-  var ctx = component._sorter_pattern.getContext('2d')
-
-  ctx.beginPath();
-  ctx.fillStyle = color
-  ctx.rect(0, 0, pattern_size, pattern_size);
-  ctx.fill();
-
-  ctx.beginPath();
-  ctx.strokeStyle = stroke
-  ctx.lineWidth = lineWidth
-  ctx.ellipse(pattern_size / 2, pattern_size / 2, pattern_size / 3, pattern_size / 3, 0, 0, 2 * Math.PI, 0);
-
-  ctx.translate(pattern_size / 2, pattern_size / 2);
-  ctx.rotate(tilt);
-  ctx.translate(-pattern_size / 2, -pattern_size / 2);
-
-  ctx.moveTo(pattern_size / 3, pattern_size / 3);
-  ctx.lineTo(pattern_size / 3, pattern_size / 3 * 2);
-  ctx.moveTo(pattern_size / 3 * 2, pattern_size / 3);
-  ctx.lineTo(pattern_size / 3 * 2, pattern_size / 3 * 2);
-
-  ctx.stroke();
-
-  ctx.setTransform(1, 0, 0, 1, 0, 0);
-
-  return component._sorter_pattern
-}
+const FILL_STYLES = ['#ccc', '#fff', '#ffba00', '#e9746b'] // IDLE, RUN, WARN, ERROR
+const STROKE_STYLES = ['#999', '#bbb', '#d96f21', '#a73928'] // IDLE, RUN, WARN, ERROR
 
 export default (superclass) => {
   var A = class extends ValueHolder(superclass) {
@@ -89,13 +33,107 @@ export default (superclass) => {
       })
     }
 
-    get fillStyle() {
-      return {
-        image: pattern(this),
-        offsetX: 0,
-        offsetY: 0,
-        type: "pattern",
+    _draw_pattern(ctx) {
+
+      var {
+        width,
+        height,
+        left,
+        top
+      } = this.bounds;
+
+      var {
+        tilt = 0,
+        wheelSize = 3
+      } = this.model;
+
+      tilt += this.delta('tilt') || 0
+      tilt %= 3
+      tilt -= 1
+
+      var color = FILL_STYLES[this.value] || FILL_STYLES[0]
+      var stroke = STROKE_STYLES[this.value] || STROKE_STYLES[0]
+      var lineWidth = 1
+
+      var pattern_size = wheelSize * 10 || Math.min(width / 5, height / 5);
+
+      ctx.beginPath();
+      ctx.fillStyle = color
+      ctx.rect(left, top, width, height);
+      ctx.fill();
+
+      ctx.strokeStyle = stroke
+      ctx.lineWidth = lineWidth
+
+      this._draw_wheel(ctx, pattern_size, tilt)
+
+    }
+
+    _draw_circle(ctx, size) {
+      var {
+        width,
+        height
+      } = this.bounds
+
+      var offsetX = 0, offsetY = 0;
+
+      while (offsetY < height) {
+        offsetX = 0;
+        while (offsetX < width) {
+          ctx.moveTo(offsetX + size / 2 + size / 3, offsetY + size / 2)
+          ctx.ellipse(offsetX + size / 2, offsetY + size / 2, size / 3, size / 3, 0, 0, 2 * Math.PI, 0);
+
+          offsetX += size
+        }
+        offsetY += size
       }
+
+      ctx.stroke();
+    }
+
+    _draw_inner(ctx, size, tilt) {
+
+      var {
+        width,
+        height
+      } = this.bounds
+
+      var offsetX = 0, offsetY = 0;
+
+      while (offsetY < height) {
+        offsetX = 0;
+        while (offsetX < width) {
+          ctx.translate(offsetX, offsetY)
+          ctx.beginPath()
+          ctx.translate(size / 2, size / 2);
+          ctx.rotate(tilt);
+
+          ctx.moveTo(- size / 6, - size / 6);
+          ctx.lineTo(- size / 6, size / 6);
+          ctx.moveTo(size / 6, - size / 6);
+          ctx.lineTo(size / 6, size / 6);
+
+          ctx.stroke();
+          ctx.rotate(-tilt);
+          ctx.translate(- size / 2, - size / 2);
+          ctx.translate(-offsetX, -offsetY)
+
+          offsetX += size
+        }
+        offsetY += size
+      }
+    }
+
+    _draw_wheel(ctx, size, tilt) {
+
+      var {
+        left, top
+      } = this.bounds;
+
+      ctx.beginPath();
+      ctx.translate(left, top)
+      this._draw_circle(ctx, size)
+      this._draw_inner(ctx, size, tilt)
     }
   }
 

@@ -43,7 +43,6 @@ export default class WheelSorter extends MixinWheelSorter(RectPath(Shape)) {
   }
 
   _draw(ctx) {
-
     var {
       width, height, left, top, animated
     } = this.model;
@@ -52,6 +51,13 @@ export default class WheelSorter extends MixinWheelSorter(RectPath(Shape)) {
 
     ctx.beginPath();
     ctx.rect(left, top, width, height);
+
+    ctx.clip(); // bound를 벗어난 영역에도 그려지는 것을 예방.
+  }
+
+  _post_draw(ctx) {
+    super._post_draw(ctx);
+    this._draw_pattern(ctx)
   }
 
   is3dish() {

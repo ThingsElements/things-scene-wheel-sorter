@@ -9,8 +9,8 @@ var {
 const TYPE_ROLLER = 0
 const TYPE_BELT = 1
 
-const FILL_STYLES = ['#aaa', '#6599cd', '#6599cd', '#ffba00', '#e9746b'] // IDLE, RUN, RUN(REVERSE), WARN, ERROR
-const STROKE_STYLES = ['#999', '#003366', '#003366', '#d96f21', '#a73928'] // IDLE, RUN, RUN(REVERSE), WARN, ERROR
+const FILL_STYLES = ['#ccc', '#fff', '#fff', '#ffba00', '#e9746b'] // IDLE, RUN, RUN(REVERSE), WARN, ERROR
+const STROKE_STYLES = ['#999', '#bbb', '#bbb', '#d96f21', '#a73928'] // IDLE, RUN, RUN(REVERSE), WARN, ERROR
 
 function pattern_for_belt_type(component) {
   var {
@@ -18,8 +18,7 @@ function pattern_for_belt_type(component) {
   } = component.bounds;
 
   var {
-    rollWidth = 10,
-    conveyorType = TYPE_ROLLER
+    rollWidth = 10
   } = component.model;
 
   var width = Math.max(rollWidth, 1)
@@ -71,19 +70,30 @@ function pattern_for_roller_type(component) {
 
   var {
     rollWidth = 10,
-    conveyorType = TYPE_ROLLER
+    animated
   } = component.model;
+
+  // var modelWidth = component.model.width;
 
   var width = Math.max(rollWidth, 1)
 
   var color = FILL_STYLES[component.value] || FILL_STYLES[0]
   var stroke = STROKE_STYLES[component.value] || STROKE_STYLES[0]
-  var lineWidth = 1
+  var lineWidth = Math.min(1, width / 10)
+
+  width += lineWidth *2
 
   if(!component._roller_pattern)
     component._roller_pattern = document.createElement('canvas');
 
-  component._roller_pattern.width = width + 2;
+  var gap = Math.floor(width * 2 / 3);
+
+  // while (Math.round(modelWidth - width) % (width + gap) > gap) {
+  //   gap++
+  //   console.log(gap, Math.round(modelWidth - width) % (width + gap))
+  // }
+
+  component._roller_pattern.width = width + gap;
   component._roller_pattern.height = height;
 
   var context = component._roller_pattern.getContext('2d')
@@ -93,14 +103,14 @@ function pattern_for_roller_type(component) {
   context.strokeStyle = stroke
   context.lineWidth = lineWidth
 
-  context.ellipse(width / 2, height - width / 4 - lineWidth, width / 2, width / 4, 0, 0, Math.PI);
+  context.ellipse(lineWidth + width / 2, height - width / 4 - lineWidth, width / 2, width / 4, 0, 0, Math.PI);
 
-  context.moveTo(0, height - width / 4);
-  context.lineTo(0, width / 4);
+  context.moveTo(lineWidth, height - width / 4);
+  context.lineTo(lineWidth, width / 4);
 
-  context.ellipse(width / 2, width / 4 + lineWidth, width / 2, width / 4, 0, Math.PI, 0);
+  context.ellipse(lineWidth + width / 2, width / 4 + lineWidth, width / 2, width / 4, 0, Math.PI, 0);
 
-  context.lineTo(width, height - width / 4);
+  context.lineTo(lineWidth + width, height - width / 4);
 
   context.fill();
   context.stroke();
@@ -109,14 +119,17 @@ function pattern_for_roller_type(component) {
 
   context.lineWidth = width / 3;
 
-  var x_for_roll = component._step % width;
-  if(component.value == 2)
-    x_for_roll = width - x_for_roll;
+  if (animated) {
+    var x_for_roll = component._step % width;
+    if(component.value == 2)
+      x_for_roll = width - x_for_roll;
 
-  context.moveTo(x_for_roll, height - width / 4);
-  context.lineTo(x_for_roll, width / 4);
+    context.moveTo(x_for_roll, height - width / 4);
+    context.lineTo(x_for_roll, width / 4);
 
-  context.stroke();
+    context.stroke();
+  }
+
 
   return component._roller_pattern
 }
