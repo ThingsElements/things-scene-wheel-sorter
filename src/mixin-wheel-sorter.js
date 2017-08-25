@@ -6,8 +6,8 @@ var {
   ValueHolder
 } = scene;
 
-const FILL_STYLES = ['#ccc', '#fff', '#ffba00', '#e9746b'] // IDLE, RUN, WARN, ERROR
-const STROKE_STYLES = ['#999', '#bbb', '#d96f21', '#a73928'] // IDLE, RUN, WARN, ERROR
+const FILL_STYLES = ['#ccc', '#afd0f1', '#ffba00', '#e9746b'] // IDLE, RUN, WARN, ERROR
+const STROKE_STYLES = ['#999', '#87b1db', '#d96f21', '#a73928'] // IDLE, RUN, WARN, ERROR
 
 export default (superclass) => {
   var A = class extends ValueHolder(superclass) {

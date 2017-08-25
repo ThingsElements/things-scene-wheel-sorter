@@ -9,8 +9,8 @@ var {
 const TYPE_ROLLER = 0
 const TYPE_BELT = 1
 
-const FILL_STYLES = ['#ccc', '#fff', '#fff', '#ffba00', '#e9746b'] // IDLE, RUN, RUN(REVERSE), WARN, ERROR
-const STROKE_STYLES = ['#999', '#bbb', '#bbb', '#d96f21', '#a73928'] // IDLE, RUN, RUN(REVERSE), WARN, ERROR
+const FILL_STYLES = ['#ccc', '#afd0f1', '#afd0f1', '#ffba00', '#e9746b'] // IDLE, RUN, RUN(REVERSE), WARN, ERROR
+const STROKE_STYLES = ['#999', '#87b1db', '#87b1db', '#d96f21', '#a73928'] // IDLE, RUN, RUN(REVERSE), WARN, ERROR
 
 function pattern_for_belt_type(component) {
   var {
