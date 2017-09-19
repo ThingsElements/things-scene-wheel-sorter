@@ -13,7 +13,7 @@ const NATURE = {
   resizable: true,
   rotatable: true,
   properties : [{
-    type: 'number',
+    type: 'select',
     label: 'conveyor-type',
     name: 'conveyorType',
     property: {
