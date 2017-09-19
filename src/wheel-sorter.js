@@ -20,7 +20,7 @@ const NATURE = {
     property: 'tilt'
   }, {
     type: 'number',
-    label: 'Wheel Size',
+    label: 'wheel-size',
     name: 'wheelSize',
     property: 'wheelSize'
   }, {
@@ -30,7 +30,7 @@ const NATURE = {
     property: 'value'
   }, {
     type: 'checkbox',
-    label: 'Animated',
+    label: 'animation',
     name: 'animated',
     property: 'animated'
   }]

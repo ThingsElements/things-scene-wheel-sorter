@@ -14,12 +14,12 @@ const NATURE = {
   rotatable: true,
   properties : [{
     type: 'number',
-    label: 'Conveyor Type',
+    label: 'conveyor-type',
     name: 'conveyorType',
     property: 'conveyorType'
   }, {
     type: 'number',
-    label: 'rollWidth',
+    label: 'roll-width',
     name: 'rollWidth',
     property: 'rollWidth'
   }, {
@@ -29,7 +29,7 @@ const NATURE = {
     property: 'value'
   }, {
     type: 'checkbox',
-    label: 'Animated',
+    label: 'animation',
     name: 'animated',
     property: 'animated'
   }]
