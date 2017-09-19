@@ -14,10 +14,18 @@ const NATURE = {
   resizable: true,
   rotatable: true,
   properties : [{
-    type: 'number',
+    type: 'select',
     label: 'conveyor-type',
     name: 'conveyorType',
-    property: 'conveyorType'
+    property: {
+      options: [{
+        display: 'Roller',
+        value: 0
+      }, {
+        display: 'Belt',
+        value: 1
+      }]
+    }
   }, {
     type: 'number',
     label: 'roll-width',
