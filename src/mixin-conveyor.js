@@ -142,6 +142,10 @@ const patterns = [
 export default (superclass) => {
 
   var A = class extends ValueHolder(superclass) {
+    dispose() {
+      super.dispose()
+      delete this._roller_pattern
+    }
 
     animOnState() {
       if((this.value !== 1 && this.value !== 2) || this.disposed)

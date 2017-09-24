@@ -1,6 +1,6 @@
 {
   "name": "things-scene-wheel-sorter",
-  "version": "2.0.22",
+  "version": "2.0.23",
   "description": "An element providing a starting point for your own reusable Polymer elements.",
   "main": "index.js",
   "directories": {
@@ -35,7 +35,7 @@
     "chai": "^3.4.1",
     "mocha": "^2.3.4",
     "should": "^8.0.2",
-    "uglifyjs": "^2.4.10",
+    "uglify-js": "^3.0.17",
     "watchify": "^3.3.1",
     "node-canvas": "Automattic/node-canvas"
   },

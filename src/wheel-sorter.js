@@ -61,7 +61,7 @@ export default class WheelSorter extends MixinWheelSorter(RectPath(Shape)) {
   }
 
   is3dish() {
-    return true
+    return false
   }
 }
 

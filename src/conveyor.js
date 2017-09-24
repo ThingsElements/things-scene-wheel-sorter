@@ -63,7 +63,7 @@ export default class Conveyor extends MixinRoller(RectPath(Shape)) {
   }
 
   is3dish() {
-    return true
+    return false
   }
 
 }

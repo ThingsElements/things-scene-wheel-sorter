@@ -126,7 +126,7 @@ export default class ConveyorJoin extends MixinRoller(Donut) {
   }
 
   is3dish() {
-    return true
+    return false
   }
 
   _draw(ctx) {

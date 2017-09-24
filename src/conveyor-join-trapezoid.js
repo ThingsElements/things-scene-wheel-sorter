@@ -55,7 +55,7 @@ export default class ConveyorJoinTrapezoid extends MixinRoller(Polygon) {
   }
 
   is3dish() {
-    return true
+    return false
   }
 
   _draw(context) {

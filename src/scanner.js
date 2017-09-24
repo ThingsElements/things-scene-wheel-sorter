@@ -59,7 +59,7 @@ export default class Scanner extends MixinScanner(RectPath(Shape)) {
   }
 
   is3dish() {
-    return true
+    return false
   }
 }
 

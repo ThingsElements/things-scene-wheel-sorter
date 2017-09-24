@@ -106,9 +106,13 @@ function pattern(component) {
   return component._scanner_pattern
 }
 
-
 export default (superclass) => {
   var A = class extends ValueHolder(superclass) {
+
+    dispose() {
+      super.dispose()
+      delete this._scanner_pattern
+    }
 
     get fillStyle() {
       return {
