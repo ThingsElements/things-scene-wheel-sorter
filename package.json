@@ -1,6 +1,6 @@
 {
   "name": "@things-elements/things-scene-wheel-sorter",
-  "version": "2.0.26",
+  "version": "2.0.27",
   "description": "The wheel sorter component for things-scene",
   "main": "src/index.js",
   "things-shell": true,

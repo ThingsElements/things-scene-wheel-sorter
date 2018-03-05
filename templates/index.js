@@ -1,5 +1,15 @@
+import conveyor from '../assets/conveyor.png';
+import conveyorBelt from '../assets/conveyor-belt.png';
+import conveyorJoin from '../assets/conveyor-join.png';
+import conveyorJoinTrapezoid from '../assets/conveyor-join-trapezoid.png';
+import scanner from '../assets/scanner.png';
+import wheelSorter from '../assets/wheel-sorter.png';
+
 export default [{
   type: 'conveyor',
+  description: 'roller type conveyor',
+  group: 'warehouse',
+  icon: conveyor,
   model: {
     type: 'conveyor',
     top: 350,
@@ -14,6 +24,9 @@ export default [{
   }
 }, {
   type: 'conveyor-belt',
+  description: 'belt type conveyor',
+  group: 'warehouse',
+  icon: conveyorBelt,
   model: {
     type: 'conveyor-belt',
     top: 500,
@@ -29,6 +42,9 @@ export default [{
   }
 }, {
   type: 'conveyor-join',
+  description: 'join shaped conveyor',
+  group: 'warehouse',
+  icon: conveyorJoin,
   model: {
     type: 'conveyor-join',
     cx: 100,
@@ -45,6 +61,9 @@ export default [{
   }
 }, {
   type: 'scanner',
+  description: 'box scanner',
+  group: 'warehouse',
+  icon: scanner,
   model: {
     type: 'scanner',
     top: 100,
@@ -59,6 +78,9 @@ export default [{
   }
 }, {
   type: 'conveyor-join-trapezoid',
+  description: 'conveyor join trapezoid',
+  group: 'warehouse',
+  icon: conveyorJoinTrapezoid,
   model: {
     type: 'conveyor-join-trapezoid',
     lineWidth: 1,
@@ -70,6 +92,9 @@ export default [{
   }
 }, {
   type: 'wheel-sorter',
+  description: 'wheel sorter',
+  group: 'warehouse',
+  icon: wheelSorter,
   model: {
     type: 'wheel-sorter',
     top: 50,
@@ -82,12 +107,4 @@ export default [{
     value: 1,
     tilt: 1
   }
-}].map(template => {
-  return {
-    name: template.type,
-    description: '..',
-    icon: '..',
-    group: 'warehouse',
-    template
-  };
-});
+}];
