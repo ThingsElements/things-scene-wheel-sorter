@@ -1,9 +1,9 @@
 {
-  "name": "@things-elements/things-scene-wheel-sorter",
-  "version": "2.0.27",
+  "name": "@things-scene/wheel-sorter",
+  "version": "2.1.0",
   "description": "The wheel sorter component for things-scene",
+  "things-scene": true,
   "main": "src/index.js",
-  "things-shell": true,
   "directories": {
     "test": "test"
   },
@@ -28,7 +28,7 @@
     ]
   },
   "devDependencies": {
-    "@hatiolab/things-shell": "^0.2.26"
+    "@hatiolab/things-shell": "^0.3.0"
   },
   "dependencies": {
     "@hatiolab/things-scene": "^2.2.36"
