@@ -23,18 +23,15 @@ const NATURE = {
   }, {
     type: 'number',
     label: 'roll-width',
-    name: 'rollWidth',
-    property: 'rollWidth'
+    name: 'rollWidth'
   }, {
     type: 'number',
     label: 'value',
-    name: 'value',
-    property: 'value'
+    name: 'value'
   }, {
     type: 'checkbox',
     label: 'animation',
-    name: 'animated',
-    property: 'animated'
+    name: 'animated'
   }]
 }
 
@@ -46,7 +43,7 @@ export default class Conveyor extends MixinRoller(RectPath(Shape)) {
     return NATURE
   }
 
-  _draw(ctx) {
+  render(ctx) {
 
     var {
       width, height, left, top, animated = false

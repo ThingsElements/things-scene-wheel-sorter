@@ -16,23 +16,19 @@ const NATURE = {
   properties: [{
     type: 'number',
     label: 'tilt',
-    name: 'tilt',
-    property: 'tilt'
+    name: 'tilt'
   }, {
     type: 'number',
     label: 'wheel-size',
-    name: 'wheelSize',
-    property: 'wheelSize'
+    name: 'wheelSize'
   }, {
     type: 'number',
     label: 'value',
-    name: 'value',
-    property: 'value'
+    name: 'value'
   }, {
     type: 'checkbox',
     label: 'animation',
-    name: 'animated',
-    property: 'animated'
+    name: 'animated'
   }]
 }
 
@@ -42,7 +38,7 @@ export default class WheelSorter extends MixinWheelSorter(RectPath(Shape)) {
     return NATURE
   }
 
-  _draw(ctx) {
+  render(ctx) {
     var {
       width, height, left, top, animated
     } = this.model;
@@ -55,8 +51,8 @@ export default class WheelSorter extends MixinWheelSorter(RectPath(Shape)) {
     ctx.clip(); // bound를 벗어난 영역에도 그려지는 것을 예방.
   }
 
-  _post_draw(ctx) {
-    super._post_draw(ctx);
+  postrender(ctx) {
+    super.postrender(ctx);
     this._draw_pattern(ctx)
   }
 

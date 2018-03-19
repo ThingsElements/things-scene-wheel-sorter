@@ -29,33 +29,27 @@ const NATURE = {
   }, {
     type: 'angle',
     label: 'start-angle',
-    name: 'startAngle',
-    property: 'startAngle'
+    name: 'startAngle'
   }, {
     type: 'angle',
     label: 'end-angle',
-    name: 'endAngle',
-    property: 'endAngle'
+    name: 'endAngle'
   }, {
     type: 'number',
     label: 'ratio',
-    name: 'ratio',
-    property: 'ratio'
+    name: 'ratio'
   }, {
     type: 'number',
     label: 'roll-width',
-    name: 'rollWidth',
-    property: 'rollWidth'
+    name: 'rollWidth'
   }, {
     type: 'number',
     label: 'value',
-    name: 'value',
-    property: 'value'
+    name: 'value'
   }, {
     type: 'checkbox',
     label: 'animation',
-    name: 'animated',
-    property: 'animated'
+    name: 'animated'
   }]
 }
 
@@ -129,7 +123,7 @@ export default class ConveyorJoin extends MixinRoller(Donut) {
     return false
   }
 
-  _draw(ctx) {
+  render(ctx) {
 
     var {
       ratio = 50,
