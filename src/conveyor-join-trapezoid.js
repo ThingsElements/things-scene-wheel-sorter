@@ -28,18 +28,15 @@ const NATURE = {
   }, {
     type: 'number',
     label: 'roll-width',
-    name: 'rollWidth',
-    property: 'rollWidth'
+    name: 'rollWidth'
   }, {
     type: 'number',
     label: 'value',
-    name: 'value',
-    property: 'value'
+    name: 'value'
   }, {
     type: 'checkbox',
     label: 'animation',
-    name: 'animated',
-    property: 'animated'
+    name: 'animated'
   }]
 }
 
@@ -58,9 +55,9 @@ export default class ConveyorJoinTrapezoid extends MixinRoller(Polygon) {
     return false
   }
 
-  _draw(context) {
+  render(context) {
     this.get('animated') && this.animOnState()
-    super._draw(context)
+    super.render(context)
   }
 }
 

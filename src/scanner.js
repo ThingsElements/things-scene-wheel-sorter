@@ -16,13 +16,11 @@ const NATURE = {
   properties : [{
     type: 'number',
     label: 'value',
-    name: 'value',
-    property: 'value'
+    name: 'value'
   }, {
     type: 'number',
     label: 'round',
-    name: 'round',
-    property: 'round'
+    name: 'round'
   }]
 }
 
@@ -37,7 +35,7 @@ export default class Scanner extends MixinScanner(RectPath(Shape)) {
     return NATURE
   }
 
-  _draw(ctx) {
+  render(ctx) {
 
     var {
       width, height, left, top
