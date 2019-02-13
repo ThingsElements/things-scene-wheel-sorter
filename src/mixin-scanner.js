@@ -1,10 +1,10 @@
 /*
  * Copyright © HatioLab Inc. All rights reserved.
  */
-var {
+import {
   Component,
   ValueHolder
-} = scene;
+} from '@hatiolab/things-scene';
 
 const FILL_STYLES = ['rgba(0,0,0,.4)', 'rgba(175,208,241,.7)', 'rgba(255,186,0,.7)', 'rgba(198,50,40,.7)'] // IDLE, RUN, WARN, ERROR
 const STROKE_STYLES = ['rgba(0,0,0,.7)', 'rgba(175,208,241,1)', 'rgba(255,186,0,1)', 'rgba(198,50,40,1)'] // IDLE, RUN, WARN, ERROR

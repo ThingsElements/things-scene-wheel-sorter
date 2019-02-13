@@ -3,11 +3,11 @@
  */
 import MixinScanner from './mixin-scanner'
 
-var {
+import {
   Component,
   RectPath,
   Shape
-} = scene;
+} from '@hatiolab/things-scene';
 
 const NATURE = {
   mutable: false,

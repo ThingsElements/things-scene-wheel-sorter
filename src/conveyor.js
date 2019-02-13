@@ -3,12 +3,6 @@
  */
 import MixinRoller from './mixin-conveyor'
 
-var {
-  Component,
-  RectPath,
-  Shape
-} = scene;
-
 const NATURE = {
   mutable: false,
   resizable: true,
@@ -40,6 +34,8 @@ const NATURE = {
     name: 'animated'
   }]
 }
+
+import { Component, RectPath, Shape } from '@hatiolab/things-scene';
 
 export default class Conveyor extends MixinRoller(RectPath(Shape)) {
 

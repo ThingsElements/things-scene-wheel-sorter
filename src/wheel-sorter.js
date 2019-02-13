@@ -3,11 +3,11 @@
  */
 import MixinWheelSorter from './mixin-wheel-sorter'
 
-var {
+import {
   Component,
   RectPath,
   Shape
-} = scene;
+} from '@hatiolab/things-scene';
 
 const NATURE = {
   mutable: false,

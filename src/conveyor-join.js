@@ -3,11 +3,11 @@
  */
 import MixinRoller from './mixin-conveyor'
 
-var {
+import {
   Component,
   Rect,
   Donut
-} = scene;
+} from '@hatiolab/things-scene';
 
 const NATURE = {
   mutable: false,

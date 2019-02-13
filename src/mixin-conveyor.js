@@ -1,10 +1,10 @@
 /*
  * Copyright © HatioLab Inc. All rights reserved.
  */
-var {
+import {
   Component,
   ValueHolder
-} = scene;
+} from '@hatiolab/things-scene';
 
 const TYPE_ROLLER = 0
 const TYPE_BELT = 1
